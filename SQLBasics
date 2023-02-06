@@ -112,7 +112,15 @@ ORDER BY EmployeeID
 
 
 
+-- CASE
 
+select EmployeeID,JobTitle,Salary,
+ Case
+     when JobTitle='Salesman' THEN Salary+(Salary * 0.10)
+     
+	 else Salary+(Salary * 0.3)
+end AS Increment
+from [SQL Tutorial].dbo.Employeesalary
 
 
 
