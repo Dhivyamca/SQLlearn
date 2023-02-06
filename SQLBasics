@@ -122,6 +122,53 @@ select EmployeeID,JobTitle,Salary,
 end AS Increment
 from [SQL Tutorial].dbo.Employeesalary
 
+-- Throws ERROR SINCE after joins in aggregatin where cant validate only use HAVING CLAUSE AFTER GROUP BY
+
+select JobTitle from
+[SQL Tutorial].dbo.EmployeeDemographics  Inner join [SQL Tutorial].dbo.EmployeeSalary 
+ON EmployeeDemographics.EmployeeID=EmployeeSalary.EmployeeID
+Where COUNT(JobTitle)>1
+GROUP BY JobTitle
+
+-- CORRCT
+
+select JobTitle,COUNT(JobTitle)
+from
+[SQL Tutorial].dbo.EmployeeDemographics  Inner join [SQL Tutorial].dbo.EmployeeSalary 
+ON EmployeeDemographics.EmployeeID=EmployeeSalary.EmployeeID
+
+GROUP BY JobTitle
+HAVING COUNT(JobTitle) >1
+
+-- AVG SALARY
+
+select JobTitle,AVG(Salary)
+from
+[SQL Tutorial].dbo.EmployeeDemographics  Inner join [SQL Tutorial].dbo.EmployeeSalary 
+ON EmployeeDemographics.EmployeeID=EmployeeSalary.EmployeeID
+
+GROUP BY JobTitle
+ORDER BY AVG(Salary)
+-- avg salary range
+
+select JobTitle,AVG(Salary)
+from
+[SQL Tutorial].dbo.EmployeeDemographics  Inner join [SQL Tutorial].dbo.EmployeeSalary 
+ON EmployeeDemographics.EmployeeID=EmployeeSalary.EmployeeID
+
+GROUP BY JobTitle
+HAVING AVG(Salary) > 45000
+ORDER BY AVG(Salary)
+
+-- max salary WITHOUT AGGREATE FUNCTION
+
+select TOP(1) JobTitle,Salary
+from
+[SQL Tutorial].dbo.EmployeeDemographics  Inner join [SQL Tutorial].dbo.EmployeeSalary 
+ON EmployeeDemographics.EmployeeID=EmployeeSalary.EmployeeID
+ORDER BY Salary DESC
+
+
 
 
 
