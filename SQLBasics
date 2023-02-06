@@ -168,6 +168,33 @@ from
 ON EmployeeDemographics.EmployeeID=EmployeeSalary.EmployeeID
 ORDER BY Salary DESC
 
+--update
+
+UPDATE  [SQL Tutorial].dbo.EmployeeDemographics set age=30 , Gender='Male' where EmployeeID=1013
+
+select * from [SQL Tutorial].dbo.EmployeeDemographics where EmployeeID=1013
+
+delete from [SQL Tutorial].dbo.EmployeeDemographics where EmployeeID=1013
+
+--  Aliases
+
+select FirstName + ' ' + LastName as fname from [SQL Tutorial].dbo.EmployeeDemographics
+
+select * from [SQL Tutorial].dbo.WareHouseEmployeeDemographics
+
+select * from [SQL Tutorial].dbo.EmployeeSalary
+
+insert into [SQL Tutorial].dbo.EmployeeSalary values(1013,'Salesman',50000)
+
+select demo.EmployeeID,sal.Salary
+from [SQL Tutorial].dbo.EmployeeDemographics as demo
+inner join [SQL Tutorial].dbo.EmployeeSalary  as sal
+
+on demo.EmployeeID=sal.EmployeeID
+inner join  [SQL Tutorial].dbo.WareHouseEmployeeDemographics AS war
+on sal.EmployeeID =war.EmployeeID
+
+
 
 
 
