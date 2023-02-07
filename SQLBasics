@@ -195,6 +195,22 @@ inner join  [SQL Tutorial].dbo.WareHouseEmployeeDemographics AS war
 on sal.EmployeeID =war.EmployeeID
 
 
+-- CTE REFERENCES WITH
+-- partition
+
+WITH Employee as
+(select FirstName,LastName , Gender ,Salary,
+COUNT (Gender) OVER (PARTITION BY Gender) as total_gender,
+AVG(Salary) OVER (PARTITION BY Salary) as Salary
+from [SQL Tutorial].dbo.EmployeeDemographics as demo
+inner join [SQL Tutorial].dbo.EmployeeSalary  as sal
+
+on demo.EmployeeID=sal.EmployeeID
+where Salary > 45000
+)
+
+select * from Employee
+
 
 
 
